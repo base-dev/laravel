@@ -41,6 +41,15 @@ fi
 
 run_cmd() {
     local SERVICE="${COMMAND}"
+
+    # This command is not in the PATH, but lies in the project folder.
+    # TODO(nicolai): Figure out a better way to do this.
+    #                PATH="/vagrant:$PATH" is not as easy as it seems.
+    if [ "$SERVICE" == "artisan" ]
+    then
+        SERVICE="./artisan"
+    fi
+
     debug "ssh -F \"${SSH_CONFIG}\" default \"cd /vagrant ; ${SERVICE} ${ARGS}\""
     ssh -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}"
     return $?
