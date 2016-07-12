@@ -12,6 +12,10 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 1337, host: 1337
 
+  config.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+  end
+
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
