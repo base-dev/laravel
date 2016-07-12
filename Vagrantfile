@@ -8,6 +8,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "laravel/homestead"
 
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder "project/", "/vagrant"
+
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 1337, host: 1337

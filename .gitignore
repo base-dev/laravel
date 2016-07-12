@@ -3,3 +3,4 @@ vars
 !vars/*.example
 assets/ssh-config
 .zenv
+project/*

@@ -15,6 +15,10 @@ main() {
     echo "Attempting to remove old .zenv file"
     rm -f "$ENV_FILE" || exit 1
 
+    mkdir -p "${PROJECT_ROOT}/project" 2>/dev/null \
+        || (echo >&2 "error: couldn't create folder 'project' in '${PROJECT_ROOT}'" \
+        echo >&2 "error: are you sure you have the right permissions?")
+
     vagrant_setup
 }
 
@@ -22,7 +26,7 @@ vagrant_setup() {
     if ! which vagrant &>/dev/null
     then
         echo >&2 "error: couldn't run command 'vagrant'"
-        echo >&2 "error: You must have vagrant installed"
+        echo >&2 "error: you must have vagrant installed"
         echo >&2 "error: to run the vagrant-setup"
         exit 1
     fi
