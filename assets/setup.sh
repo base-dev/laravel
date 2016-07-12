@@ -32,16 +32,22 @@ vagrant_setup() {
         echo "export TGHS_PROJECT_ROOT=\"${PROJECT_ROOT}\""
         echo "export TGHS_VAGRANT_SSH_CONFIG=\"${SCRIPT_DIR}/ssh-config\""
         echo
-        # TODO(nicolai): refactor this to use a loop
-        echo "alias artisan=\"${SCRIPT_DIR}/artisan\""
-        echo "alias bower=\"${SCRIPT_DIR}/bower\""
-        echo "alias composer=\"${SCRIPT_DIR}/composer\""
-        echo "alias gulp=\"${SCRIPT_DIR}/gulp\""
-        echo "alias npm=\"${SCRIPT_DIR}/npm\""
-        echo "alias php=\"${SCRIPT_DIR}/php\""
-        echo "alias webpack=\"${SCRIPT_DIR}/webpack\""
-        echo "alias webpack-dev-server=\"${SCRIPT_DIR}/webpack-dev-server\""
-        echo "alias wds=webpack-dev-server"
+
+        # TODO(nicolai): define somewhere more logical (these are used in commands.sh too)
+        declare -a _commands=(artisan bower composer gulp npm php webpack webpack-dev-server)
+
+        for _cmd in "${_commands[@]}"
+        do
+            echo "alias $_cmd=\"${SCRIPT_DIR}/$_cmd\""
+        done
+        unset _commands
+        unset _cmd
+
+        if [[  "${_commands[@]}" =~ "webpack-dev-server" ]]
+        then
+            echo "alias wds=webpack-dev-server"
+        fi
+
     } >> "$ENV_FILE"
 
     # generate ssh-config
