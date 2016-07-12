@@ -42,7 +42,6 @@ vagrant_setup() {
         echo "alias webpack=\"${SCRIPT_DIR}/webpack\""
         echo "alias webpack-dev-server=\"${SCRIPT_DIR}/webpack-dev-server\""
         echo "alias wds=webpack-dev-server"
-        echo "alias doco=\"${SCRIPT_DIR}/docker-compose\""
     } >> "$ENV_FILE"
 
     # generate ssh-config
