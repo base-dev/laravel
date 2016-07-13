@@ -65,6 +65,12 @@ then
     exit 0
 fi
 
+if [ "${SCRIPT_NAME}" == "ev" ]
+then
+    COMMAND=""
+    run_cmd
+    exit 0
+fi
 
 available_commands=(artisan bower composer gulp npm php webpack)
 if ! [[ "${available_commands[@]}" =~ ${SCRIPT_NAME} ]]

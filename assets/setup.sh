@@ -44,7 +44,7 @@ vagrant_setup() {
         echo
 
         # TODO(nicolai): define somewhere more logical (these are used in commands.sh too)
-        declare -a _commands=(artisan bower composer gulp npm php webpack webpack-dev-server)
+        declare -a _commands=(ev artisan bower composer gulp npm php webpack webpack-dev-server)
 
         for _cmd in "${_commands[@]}"
         do
