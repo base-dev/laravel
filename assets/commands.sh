@@ -51,7 +51,7 @@ run_cmd() {
     fi
 
     debug "ssh -F \"${SSH_CONFIG}\" default \"cd /vagrant ; ${SERVICE} ${ARGS}\""
-    ssh -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}"
+    ssh -t  -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}"
     return $?
 }
 
