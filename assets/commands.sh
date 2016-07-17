@@ -51,7 +51,15 @@ run_cmd() {
     fi
 
     debug "ssh -F \"${SSH_CONFIG}\" default \"cd /vagrant ; ${SERVICE} ${ARGS}\""
-    ssh -t  -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}"
+    ssh -t  -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}" \
+        || SSHRET=$?
+
+    if [ $SSHRET == 255 ]
+    then
+        echo >&2 "error: could not connect"
+        echo >&2 "error: is Vagrant running?"
+    fi
+
     return $?
 }
 
