@@ -54,7 +54,8 @@ run_cmd() {
     SSHRET=0
 
     debug "ssh -F \"${SSH_CONFIG}\" default \"cd /vagrant ; ${SERVICE} ${ARGS}\""
-    ssh -t  -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}" \
+    ssh -t -F "${SSH_CONFIG}" default "cd /vagrant ; ${SERVICE} ${ARGS} ; ERR=\$? ;" \
+        "test \$ERR = 0 || printf '\n%s\n' \"${SERVICE} returned: \$ERR\"" \
         || SSHRET=$?
 
     if [ $SSHRET == 255 ]
