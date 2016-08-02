@@ -50,6 +50,9 @@ run_cmd() {
         SERVICE="./artisan"
     fi
 
+    local SSHRET
+    SSHRET=0
+
     debug "ssh -F \"${SSH_CONFIG}\" default \"cd /vagrant ; ${SERVICE} ${ARGS}\""
     ssh -t  -F "${SSH_CONFIG}" default "cd /vagrant ; ${CMD} ${SERVICE} ${ARGS}" \
         || SSHRET=$?
