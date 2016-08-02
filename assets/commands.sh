@@ -58,7 +58,7 @@ run_cmd() {
         "test \$ERR = 0 || printf '\n%s\n' \"${SERVICE} returned: \$ERR\"" \
         || SSHRET=$?
 
-    if [ $SSHRET == 255 ]
+    if [ "$SSHRET" == "255" ]
     then
         echo >&2 "error: could not connect"
         echo >&2 "error: is Vagrant running?"
