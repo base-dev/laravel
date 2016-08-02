@@ -70,9 +70,6 @@ run_cmd() {
     return $?
 }
 
-CMD=""
-
-
 if [ "${SCRIPT_NAME}" == "webpack-dev-server" ]
 then
     COMMAND="webpack-dev-server --host 0.0.0.0"
