@@ -62,6 +62,9 @@ run_cmd() {
     then
         echo >&2 "error: could not connect"
         echo >&2 "error: is Vagrant running?"
+    elif [ "$SSHRET" != "0" ]
+    then
+        echo >&2 "error: ssh returned $SSHRET"
     fi
 
     return $?
